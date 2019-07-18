@@ -31,7 +31,7 @@ $(() => {
 
             for (xc of oldData.Queue) {
              
-                if (x.RoomLabel == xc.RoomLabel) {
+                if (x.RoomLabel != xc.RoomLabel) {
                     
                   
                     if (x.CalledOn != playtim) {
@@ -45,7 +45,14 @@ $(() => {
                         playtim = x.CalledOn;
                     }
 
+                    //$("#bodyT").append(
 
+                    //    `<tr><td class=left-align><h3 onChange="test()" style=font-weight:bolder;font-size:7em; class=teal-text >${x.RoomLabel}</h3></td ><td  class=center-align ><h3 class=teal-text text-darken-4 style=font-weight:bolder;font-size:7em; >${x.TokenNo}</h3></td></tr>`
+
+
+
+                    //).addClass("#1de9b6 teal accent - 1 notis");
+                    //$("#bodyT h3").addClass("text-darken-4");
             
                     
                     $("#bodyT").append(
@@ -71,6 +78,17 @@ $(() => {
 
                     ).addClass("#1de9b6 teal accent - 1 notis");
                     $("#bodyT h3").addClass("text-darken-4");
+
+
+                    //$("#bodyT").append(
+
+                    //    `<tr style= background-color:crimson;><td  id=f><h3 onChange="test()" style=font-weight:bolder;font-size:7em;   >${x.RoomLabel}</h3></td ><td  class=center-align ><h3  style=font-weight:bolder;font-size:7em >${x.TokenNo}</h3></td></tr>`
+
+
+
+                    //);
+                    //$("#bodyT h3").addClass("black-text ");
+                    //$("#body tr").addClass("#e1bee7 purple lighten-4");
                 }
                 break;
             }
