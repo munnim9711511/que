@@ -11,6 +11,7 @@ namespace TokenSystem
 {
     public class HubToken:Hub
     {
+        static int lastToken = 0;
         static readonly HttpClient client = new HttpClient();
         private readonly DataCon _db;
         public HubToken(DataCon _db)
@@ -20,6 +21,7 @@ namespace TokenSystem
 
         public  async Task SendToken(int operation )
         {
+            lastToken = operation;
             string route = $"http://hims/hmh/roomqueue/json.php?DisplayID={operation}";
             HttpResponseMessage response = await client.GetAsync(route);
             response.EnsureSuccessStatusCode();
@@ -43,8 +45,8 @@ namespace TokenSystem
         }
         public override async  Task OnDisconnectedAsync(Exception exception)
         {
-
-            HttpResponseMessage response = await client.GetAsync("http://hims/hmh/roomqueue/json.php?DisplayID=0");
+            string route = $"http://hims/hmh/roomqueue/json.php?DisplayID={lastToken}";
+            HttpResponseMessage response = await client.GetAsync(route);
             response.EnsureSuccessStatusCode();
             var responseBody = await response.Content.ReadAsStringAsync();
 

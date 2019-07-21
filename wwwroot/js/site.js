@@ -17,11 +17,7 @@ $(() => {
         //console.log(data);
         oldData = data;
         
-        $("#bodyT").on("change","#f", () => {
-
-
-
-        });
+    
       
         $("#bodyT").empty();
      
