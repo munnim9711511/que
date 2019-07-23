@@ -29,7 +29,7 @@ namespace TokenSystem
 
             var result =  JsonConvert.DeserializeObject<object>(responseBody);
 
-            await Clients.All.SendAsync("token", result);
+            await Clients.Caller.SendAsync("token", result);
         }
         public override async Task OnConnectedAsync()
         {
