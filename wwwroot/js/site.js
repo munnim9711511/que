@@ -5,6 +5,15 @@
 
 
 $(() => {
+    function callData() {
+
+        voldData = x;
+        var c = $("#op").html();
+
+        connection.invoke("SendToken", c);
+
+
+    }
     function blink() {
 
         function color1() {
@@ -15,15 +24,15 @@ $(() => {
             $("#d").removeClass("#ec407a pink lighten-1");
 
         }
-        var myVar = setInterval(color1, 100);
-        var myVar2 = setInterval(colorR, 400);
+        var myVar = setInterval(color1, 8);
+        var myVar2 = setInterval(colorR, 60);
       
         setTimeout(() => {
 
             clearInterval(myVar);
             clearInterval(myVar2);
 
-        },800);
+        },1000);
 
 
     }
@@ -35,6 +44,9 @@ $(() => {
     var playPromise = document.querySelector('audio');
     var media = document.getElementById("audio");
     connection.on("token", (data) => {
+
+        clearInterval(myVar4);
+
         //console.log(data);
         oldData = data;
         
@@ -62,12 +74,13 @@ $(() => {
 
 
                             playtim = x.CalledOn;
+                            blink();
                         }
 
                  
                         $("#bodyT").append(
 
-                            `<tr  style= background-color:crimson;><td  id=f><h3 onChange="test()" style=font-weight:bolder;font-size:7em;   >${x.RoomLabel}</h3></td ><td  class=center-align ><h3  style=font-weight:bolder;font-size:7em >${x.TokenNo}</h3></td></tr>`
+                            `<tr  id=d style= background-color:crimson;><td  id=f><h3 onChange="test()" style=font-weight:bolder;font-size:7em;   >${x.RoomLabel}</h3></td ><td  class=center-align ><h3  style=font-weight:bolder;font-size:7em >${x.TokenNo}</h3></td></tr>`
 
 
 
@@ -96,7 +109,7 @@ $(() => {
                 }
                 else {
 
-                    if (x.RoomLabel != xc.RoomLabel) {
+                    if ((x.TokenNo != xc.TokenNo) && (x.CalledOn != playtim)  ) {
                         $("#bodyT").append(
                             `<tr id=d><td class=left-align><h3 onChange="test()" style=font-weight:bolder;font-size:7em;  >${x.RoomLabel}</h3></td ><td  class=center-align ><h3  style=font-weight:bolder;font-size:7em; >${x.TokenNo}</h3></td></tr>`
 
@@ -104,7 +117,7 @@ $(() => {
 
                         );
 
-                        if (x.CalledOn != playtim) {
+                      
                             document.getElementById("audio").play().catch(function () {
                                 // do something
                             });
@@ -115,7 +128,7 @@ $(() => {
                             playtim = x.CalledOn;
                             blink();
                            
-                        }
+                      
                       
                       
                        
@@ -129,7 +142,7 @@ $(() => {
                     else {
                         $("#bodyT").append(
 
-                            `<tr  id=d><td class=left-align><h3 onChange="test()" style=font-weight:bolder;font-size:7em;  >${x.RoomLabel}</h3></td ><td  class=center-align ><h3 style=font-weight:bolder;font-size:7em; >${x.TokenNo}</h3></td></tr>`
+                            `<tr  ><td class=left-align><h3 onChange="test()" style=font-weight:bolder;font-size:7em;  >${x.RoomLabel}</h3></td ><td  class=center-align ><h3 style=font-weight:bolder;font-size:7em; >${x.TokenNo}</h3></td></tr>`
 
 
 
@@ -144,17 +157,11 @@ $(() => {
                 break;
             }
            
-         
+            var myVar4 = setInterval(callData, 2000);
            
         }
       
-        setInterval(() => {
-            voldData = x;
-            var c = $("#op").html();
-
-            connection.invoke("SendToken", c);
-
-        }, 1000)
+    
     
 
        
